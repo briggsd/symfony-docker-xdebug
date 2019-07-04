@@ -1,4 +1,4 @@
-## Setup
+## Docker Setup & Configuration
 
 ### Build Docker Containers
 
@@ -27,5 +27,33 @@ docker-compose up -d
 
 Once the containers have finished setting up, you should be able to access the site by going to ```http://localhost:8010``` 
 in your browser.
+
+At this point you should be able to place a breakpoint within a script to begin the debugging process.  For instance, 
+navigate to `public/index.php` and place a breakpoint on line 19 and then reload the browser page.  PhpStorm should now 
+pause the script at your breakpoint.
+
+## PhpStorm Setup & Configuration
+
+Defaults should mostly work here although it can be helpful to double check them.  Options like Force break at first line 
+can also be enabled/disabled to your liking.
+
+### Listening for debug connections
+
+You can start/stop listening for debug connections by going to `Run > Start/Stop Listening for debug connections`.  This 
+action should also be available via the toolbar with the same telephone icon.  If the icon has a red circle, it indicates 
+you are currently NOT listening for debug connections
+
+### Settings > Language & Frameworks > PHP > Debug
+
+#### Xdebug
+
+* Debug port: 9000
+* Check - Can accept external connections
+* Check - Force break at first line when no path mapping is specified
+* Check - Force break at first line when a script is outside of project
+
+
+
+
 
 

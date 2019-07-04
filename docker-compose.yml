@@ -8,7 +8,7 @@ services:
     web-server:
         build: ./_docker/php/
         ports:
-            - 8010:80
+            - 8000:80
         env_file:
             - .env.local
         environment:
@@ -23,7 +23,7 @@ services:
     mysql-server:
         image: mysql:5.6
         ports:
-            - 3309:3306
+            - 3306:3306
         volumes:
             - database_data:/var/lib/mysql
             - ./_docker/mysql/data:/docker-entrypoint-initdb.d
