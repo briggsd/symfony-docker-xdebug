@@ -1,0 +1,31 @@
+version: '2'
+
+volumes:
+    database_data:
+        driver: local
+
+services:
+    web-server:
+        build: ./_docker/php/
+        ports:
+            - 8010:80
+        env_file:
+            - .env.local
+        environment:
+            XDEBUG_CONFIG: "remote_host=${DEBUG_IP}"
+        volumes:
+            - .:/var/www/html
+            - ./_docker/apache/www.conf:/etc/apache2/sites-enabled/000-default.conf
+            - ./_docker/php/php.ini:/usr/local/etc/php/conf.d/php.ini
+        links:
+            - mysql-server
+
+    mysql-server:
+        image: mysql:5.6
+        ports:
+            - 3309:3306
+        volumes:
+            - database_data:/var/lib/mysql
+            - ./_docker/mysql/data:/docker-entrypoint-initdb.d
+        environment:
+            MYSQL_ROOT_PASSWORD: '0000'
